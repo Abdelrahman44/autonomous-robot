@@ -1,0 +1,5 @@
+Wheel Dia:
+110 mm
+
+Wheel separation:
+195 mm

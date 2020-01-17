@@ -1,0 +1,956 @@
+<?xml version="1.0"?>
+<robot name="Hexabot">
+
+<link name="base_footprint">
+      <inertial>
+        <mass value="0.0001"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      </inertial>
+    </link>
+    <!-- Joint to connect the fictitious link to the actual chassis of the robot -->
+    <joint name="base_footprint_joint" type="fixed">
+      <origin rpy="0 0 -1.570796327" xyz="0 0 0.125"/>
+      <parent link="base_footprint"/>
+      <child link="base_link"/>
+    </joint>
+
+
+
+<!---------------------- First Link (Body Link) ------------------------->
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0016561 0.02715 -0.00090837" rpy="0 0 0" />
+      <mass
+        value="1.9018" />
+      <inertia
+        ixx="0.011875"
+        ixy="5.6791E-05"
+        ixz="2.8445E-05"
+        iyy="0.018432"
+        iyz="2.9412E-05"
+        izz="0.0080418" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- LeftWheel Link    ------------------------->
+
+  <link
+    name="LeftWheel">
+    <inertial>
+      <origin
+        xyz="0 1.8891E-19 0.00235"
+        rpy="0 0 0" />
+      <mass
+        value="0.044334" />
+      <inertia
+        ixx="3.3858E-05"
+        ixy="-1.9371E-18"
+        ixz="-1.8797E-22"
+        iyy="3.3858E-05"
+        iyz="-1.8164E-24"
+        izz="6.7553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/LeftWheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/LeftWheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- LeftWheelJoint ------------------------->
+
+  <joint
+    name="LeftWheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.09765 0.02585"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LeftWheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+<!---------------------- RightWheel Link ------------------------->
+
+  <link
+    name="RightWheel">
+    <inertial>
+      <origin
+        xyz="3.4694E-18 -1.137E-20 0.00235"
+        rpy="0 0 0" />
+      <mass
+        value="0.044334" />
+      <inertia
+        ixx="3.3858E-05"
+        ixy="-1.937E-18"
+        ixz="3.0973E-22"
+        iyy="3.3858E-05"
+        iyz="-1.0995E-23"
+        izz="6.7553E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/RightWheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/RightWheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- RightWheelJoint ------------------------->
+
+  <joint
+    name="RightWheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.09765 0.02585"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RightWheel" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+<!---------------------- FrontCastorBody link ------------------------->
+
+  <link
+    name="FrontCastor">
+    <inertial>
+      <origin
+        xyz="2.8552E-09 -0.0018208 2.6086E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.0040347" />
+      <inertia
+        ixx="2.4977E-07"
+        ixy="-2.3595E-14"
+        ixz="-3.9281E-13"
+        iyy="5.2294E-07"
+        iyz="-3.1993E-15"
+        izz="4.519E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/FrontCastor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/FrontCastor.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- FrontCastorBodyJoint ------------------------->
+
+  <joint
+    name="FrontCastor_joint"
+    type="fixed">
+    <origin
+      xyz="0.15098 -0.00080231 -0.0027"
+      rpy="1.5708 -6.1211E-17 -1.5962" />
+    <parent
+      link="base_link" />
+    <child
+      link="FrontCastor" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!---------------------- FrontCastorBall link ------------------------->
+
+  <link
+    name="CastorBallFront">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.028013" />
+      <inertia
+        ixx="1.0113E-06"
+        ixy="-9.9262E-23"
+        ixz="5.294E-23"
+        iyy="1.0113E-06"
+        iyz="-5.294E-23"
+        izz="1.0113E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/CastorBallFront.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.63922 0.66667 0.67843 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/CastorBallFront.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- FrontCastorBallJoint ------------------------->
+
+  <joint
+    name="CastorBallFront_joint"
+    type="fixed"> <!-- continuous -->
+    <origin
+      xyz="0.00026727 -0.0148 0"
+      rpy="-0.99744 -0.89451 0.63951" />
+    <parent
+      link="FrontCastor" />
+    <child
+      link="CastorBallFront" />
+    <axis
+      xyz="0.48228 0.21524 -0.84916" />
+  </joint>
+
+<!---------------------- BackCastorBody link ------------------------->
+
+  <link
+    name="BackCastor">
+    <inertial>
+      <origin
+        xyz="2.8552E-09 -0.0018208 2.6086E-09"
+        rpy="0 0 0" />
+      <mass
+        value="0.0040347" />
+      <inertia
+        ixx="2.4977E-07"
+        ixy="-2.3595E-14"
+        ixz="-3.9281E-13"
+        iyy="5.2294E-07"
+        iyz="-3.1993E-15"
+        izz="4.519E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/BackCastor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/BackCastor.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- BackCastorBodyJoint ------------------------->
+
+  <joint
+    name="BackCastor_joint"
+    type="fixed">
+    <origin
+      xyz="-0.15097 0.00056958 -0.0027"
+      rpy="1.5708 6.1211E-17 1.5454" />
+    <parent
+      link="base_link" />
+    <child
+      link="BackCastor" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!---------------------- BackCastorBall link ------------------------->
+
+  <link
+    name="CastorBallBack">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.028013" />
+      <inertia
+        ixx="1.0113E-06"
+        ixy="-7.9409E-23"
+        ixz="2.647E-23"
+        iyy="1.0113E-06"
+        iyz="3.9705E-23"
+        izz="1.0113E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/CastorBallBack.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.63922 0.66667 0.67843 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/CastorBallBack.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- BackCastorBallJoint ------------------------->
+
+  <joint
+    name="CastorBallBack_joint"
+    type="fixed"> <!-- continuous -->
+    <origin
+      xyz="0.00026727 -0.0148 0"
+      rpy="-0.99744 -0.89451 0.63951" />
+    <parent
+      link="BackCastor" />
+    <child
+      link="CastorBallBack" />
+    <axis
+      xyz="0.48228 0.21524 -0.84916" />
+  </joint>
+
+
+<!---------------------- UltraSonicRight1 link ------------------------->
+
+
+
+  <link
+    name="UltraRight1">
+    <inertial>
+      <origin
+        xyz="-0.00064925 -2.0817E-17 -0.00037485"
+        rpy="0 0 1.57075" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="1.0245E-06"
+        ixy="-5.7477E-23"
+        ixz="-4.3712E-07"
+        iyy="1.2543E-06"
+        iyz="1.0328E-22"
+        izz="5.1971E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 1.57075" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 1.57075" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraRight1_joint"
+    type="fixed">
+    <origin
+      xyz="0.11258 -0.065 0.0297"
+      rpy="0 0 1.57075" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraRight1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+<!---------------------- UltraSonicRight2 link ------------------------->
+
+  <link
+    name="UltraRight2">
+    <inertial>
+      <origin
+        xyz="1.9599E-17 -1.0408E-17 -0.00074969"
+        rpy="0 0 0" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="2.6734E-07"
+        ixy="6.8466E-23"
+        ixz="6.9608E-23"
+        iyy="1.2543E-06"
+        iyz="3.9173E-23"
+        izz="1.2768E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraRight2_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.13 0.0297"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraRight2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+<!---------------------- UltraSonicRight3 link ------------------------->
+
+  <link
+    name="UltraRight3">
+    <inertial>
+      <origin
+        xyz="0.00064925 -6.9389E-18 -0.00037485"
+        rpy="0 0 0" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="1.0245E-06"
+        ixy="2.0608E-23"
+        ixz="4.3712E-07"
+        iyy="1.2543E-06"
+        iyz="6.1545E-23"
+        izz="5.1971E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraRight3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraRight3_joint"
+    type="fixed">
+    <origin
+      xyz="-0.11258 -0.065 0.0297"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraRight3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!---------------------- UltraSonicLeft1 link ------------------------->
+
+  <link
+    name="UltraLeft1">
+    <inertial>
+      <origin
+        xyz="-0.00064925 -3.4694E-18 0.00037485"
+        rpy="0 0 0" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="1.0245E-06"
+        ixy="2.0035E-23"
+        ixz="4.3712E-07"
+        iyy="1.2543E-06"
+        iyz="-4.1554E-23"
+        izz="5.1971E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraLeft1_joint"
+    type="fixed">
+    <origin
+      xyz="0.11258 0.065 0.0297"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraLeft1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+<!---------------------- UltraSonicLeft2 link ------------------------->
+
+  <link
+    name="UltraLeft2">
+    <inertial>
+      <origin
+        xyz="-3.5073E-17 -3.4694E-18 0.00074969"
+        rpy="0 0 0" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="2.6734E-07"
+        ixy="5.2056E-23"
+        ixz="2.1229E-20"
+        iyy="1.2543E-06"
+        iyz="-3.8027E-23"
+        izz="1.2768E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraLeft2_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.13 0.0297"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraLeft2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!---------------------- UltraSonicLeft3 link ------------------------->
+
+  <link
+    name="UltraLeft3">
+    <inertial>
+      <origin
+        xyz="0.00064925 3.4694E-18 0.00037485"
+        rpy="0 0 0" />
+      <mass
+        value="0.0065353" />
+      <inertia
+        ixx="1.0245E-06"
+        ixy="-1.0097E-22"
+        ixz="-4.3712E-07"
+        iyy="1.2543E-06"
+        iyz="8.9259E-23"
+        izz="5.1971E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Hexabot/meshes/UltraLeft3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UltraLeft3_joint"
+    type="fixed">
+    <origin
+      xyz="-0.11258 0.065 0.0297"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UltraLeft3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!---------------------- Laser Scanner Link ------------------------->
+
+<link name="laser_scanner">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.6525" />
+        <inertia
+            ixx="0.0011739"
+            ixy="0"
+            ixz="0"
+            iyy="0.00060212"
+            iyz="0"
+            izz="0.0015305" />
+        </inertial>
+    </link>
+    <!-- Laser Scanner Joint to connect the laser scanner to the chassis -->
+    <joint name="laser_scanner_joint"
+        type="fixed">
+        <origin
+        xyz="0 0.026147 0.11309"
+        rpy="0 0 1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="laser_scanner" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------Plugins------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+
+<gazebo reference="base_footprint">
+      <turnGravityOff>false</turnGravityOff>
+</gazebo>
+
+
+<!------------ Right Motor Transmission --------------->
+
+<transmission name="right_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="RightWheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_joint_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+
+<!------------ Left Motor Transmission --------------->
+
+<transmission name="left_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="LeftWheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_joint_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+
+<!------------ Front Castor Transmission --------------->
+<!--
+<transmission name="frontcastor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="CastorBallFront_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="front_joint_castor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+
+<!------------ Back Castor Transmission --------------->
+<!--
+<transmission name="backcastor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="CastorBallBack_joint">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="back_joint_castor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+
+<!------------ differential_drive Plugin --------------->
+
+
+<gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <rosDebugLevel> Debug </rosDebugLevel>
+            <publishWheelTF>true</publishWheelTF>
+            <robotNameSpace>/</robotNameSpace>
+            <publishTF>1</publishTF>
+            <publishWheelJointState>true</publishWheelJointState>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>100.0</updateRate>
+            <leftJoint>LeftWheel_joint</leftJoint>
+            <rightJoint>RightWheel_joint</rightJoint>
+            <wheelSeparation>0.353</wheelSeparation>
+            <wheelDiameter>0.164</wheelDiameter>
+            <broadcastTF>1</broadcastTF>
+            <wheelTorque>30</wheelTorque>
+            <wheelAcceleration>2.8</wheelAcceleration>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryTopic>odom</odometryTopic>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <legacyMode>false</legacyMode>
+            <odometrySource>world</odometrySource>
+        </plugin>
+    </gazebo>
+
+
+<!------------ IMU sensor --------------->
+
+	<gazebo>
+            <plugin name="imu_controller" filename="libgazebo_ros_imu.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>20.0</updateRate>
+                <bodyName>base_link</bodyName>
+                <topicName>imu_data</topicName>
+                <gaussianNoise>0</gaussianNoise>  <!--2.89e-08-->
+                <xyzOffsets>0 0 0</xyzOffsets>
+                <rpyOffsets>0 0 0</rpyOffsets>
+            </plugin>
+        </gazebo>
+
+<!------------ gazebo ROS Control --------------->
+
+	<gazebo>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                    <robotNamespace>/Hexabot</robotNamespace>
+                    <controlPeriod> 0.01 </controlPeriod>
+            </plugin>
+    </gazebo>
+
+<!------------ Ultrasonics Plugin --------------->
+
+<gazebo reference="laser_scanner">
+      <sensor type="ray" name="head_hokuyo_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>40</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>7</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.10</min_angle>
+              <max_angle>3.18</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>3.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise parameters based on published spec for Hokuyo laser
+                 achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                 stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                 reading. -->
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+          <topicName>/scan</topicName>
+          <frameName>laser_scanner</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+
+
+
+
+
+
+
+
+</robot>

@@ -1,0 +1,32 @@
+<launch>
+
+    <include file="$(find Hexabot)/launch/Hexabot_display.launch"/>
+    <include file="$(find gazebo_ros)/launch/willowgarage_world.launch" />
+    <node    name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf  -model Hexabot" output="screen"/>
+
+< arg name="map_file" default ="$(find Hexabot)/param/willow1.yaml" />
+<node name ="Map_server" pkg="map_server" type="map_server" args = "$(arg map_file)" />
+
+< node name="AMCL" pkg="amcl" type="amcl" >
+< remap from="/scan" to="/Hexabot/laser/scan"/>
+< param name="use_map_topic" value="false"/>
+
+< param name="initial_pose_x" value="0.0"/>
+< param name="initial_pose_y" value="0.0"/>
+< param name="initial_pose_a" value="0.0"/>
+< param name="odom_model_type" value="diff"/>
+< param name="odom_frame_id" value="/Hexabot/odom"/>
+< param name="laser_max_range" value="3.0"/>
+</node>
+
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+<rosparam file="$(find Hexabot)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+<rosparam file="$(find Hexabot)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+<rosparam file="$(find Hexabot)/param/local_costmap_params.yaml" command="load" />
+<rosparam file="$(find Hexabot)/param/global_costmap_params.yaml" command="load" />
+<rosparam file="$(find Hexabot)/param/base_local_planner_params.yaml" command="load" />
+<rosparam file="$(find Hexabot)/param/dwa_local_planner_params.yaml" command="load" />
+<rosparam file="$(find Hexabot)/param/move_base_params.yaml" command="load" />
+</node>
+
+</launch>

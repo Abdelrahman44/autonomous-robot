@@ -1,0 +1,443 @@
+<?xml version="1.0"?>
+<robot name="agent">
+
+	<link name="base_footprint">
+	      <inertial>
+		<mass value="0.0001"/>
+		<origin xyz="0 0 0"/>
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+	      </inertial>
+	    </link>
+	    <!-- Joint to connect the fictitious link to the actual chassis of the robot -->
+	    <joint name="base_footprint_joint" type="fixed">
+	      <origin rpy="0 0 -1.570796327" xyz="0 0 0.125"/>
+	      <parent link="base_footprint"/>
+	      <child link="base_link"/>
+	</joint>
+
+<!---------------------- First Link (Body Link) ------------------------->
+
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="4.118E-06 0.0065559 0.022342"
+        rpy="0 0 0" />
+      <mass
+        value="1.6084" />
+      <inertia
+        ixx="0.017094"
+        ixy="4.4094E-06"
+        ixz="1.2022E-07"
+        iyy="0.016245"
+        iyz="7.3996E-05"
+        izz="0.03053" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- LeftWheel Link    ------------------------->
+
+  <link
+    name="LeftWheel">
+    <inertial>
+      <origin
+        xyz="0 -2.7051E-17 0.013"
+        rpy="0 0 0" />
+      <mass
+        value="0.086276" />
+      <inertia
+        ixx="2.7642E-05"
+        ixy="-1.5882E-22"
+        ixz="1.7055E-21"
+        iyy="2.7642E-05"
+        iyz="1.8717E-21"
+        izz="4.5565E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/LeftWheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/LeftWheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- LeftWheelJoint ------------------------->
+
+  <joint
+    name="LeftWheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.13 0 -0.01875"
+      rpy="1.5708 -1.5542 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="LeftWheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+
+<!---------------------- RightWheel Link ------------------------->
+
+  <link
+    name="RightWheel">
+    <inertial>
+      <origin
+        xyz="-3.4694E-18 -1.7347E-17 0.013"
+        rpy="0 0 0" />
+      <mass
+        value="0.086276" />
+      <inertia
+        ixx="2.7642E-05"
+        ixy="-1.2705E-21"
+        ixz="1.8374E-21"
+        iyy="2.7642E-05"
+        iyz="-2.2304E-21"
+        izz="4.5565E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/RightWheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/RightWheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- RightWheelJoint ------------------------->
+
+  <joint
+    name="RightWheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.13 0 -0.01875"
+      rpy="1.5708 1.4103 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="RightWheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+
+<!---------------------- FrontCastorBall link 1.3878E-17 ------------------------->
+
+  <link
+    name="CastorFront">
+    <inertial>
+      <origin
+        xyz="0 1.7347E-17 1.3878E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.0032618" />
+      <inertia
+        ixx="1.1043E-07"
+        ixy="-1.6544E-24"
+        ixz="-6.6174E-24"
+        iyy="1.1043E-07"
+        iyz="2.4815E-24"
+        izz="1.1043E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/CastorFront.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/CastorFront.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- FrontCastorBallJoint ------------------------->
+
+  <joint
+    name="CastorFront_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.145 -0.038"
+      rpy="-2.8706 -0.71699 -1.8868" />
+    <parent
+      link="base_link" />
+    <child
+      link="CastorFront" />
+    <axis
+      xyz="0.23425 0.97046 -0.057661" />
+  </joint>
+
+<!---------------------- BackCastorBall link ------------------------->
+
+  <link
+    name="CastorBack">
+    <inertial>
+      <origin
+        xyz="0 6.9389E-18 6.9389E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0032618" />
+      <inertia
+        ixx="1.1043E-07"
+        ixy="0"
+        ixz="8.2718E-24"
+        iyy="1.1043E-07"
+        iyz="-6.6174E-24"
+        izz="1.1043E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/CastorBack.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agent_model/meshes/CastorBack.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!---------------------- BackCastorBallJoint ------------------------->
+
+  <joint
+    name="CastorBack_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.145 -0.038"
+      rpy="1.9371 -0.77505 0.15606" />
+    <parent
+      link="base_link" />
+    <child
+      link="CastorBack" />
+    <axis
+      xyz="-0.7057 0.58972 -0.3927" />
+  </joint>
+
+
+<!---------------------- Laser Scanner Link ------------------------->
+
+  <link name="laser_scanner">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.6525" />
+        <inertia
+            ixx="0.0011739"
+            ixy="0"
+            ixz="0"
+            iyy="0.00060212"
+            iyz="0"
+            izz="0.0015305" />
+        </inertial>
+    </link>
+    <!-- Laser Scanner Joint to connect the laser scanner to the chassis -->
+    <joint name="laser_scanner_joint"
+        type="fixed">
+        <origin
+        xyz="0 0.026147 0.11309"
+        rpy="0 0 1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="laser_scanner" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+
+<!------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------Plugins------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------->
+
+<gazebo reference="base_footprint">
+      <turnGravityOff>false</turnGravityOff>
+</gazebo>
+
+<!------------ Right Motor Transmission --------------->
+
+<transmission name="right_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="RightWheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_joint_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+<!------------ Left Motor Transmission --------------->
+
+<transmission name="left_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="LeftWheel_joint">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_joint_motor">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+</transmission>
+
+<!------------ differential_drive Plugin --------------->
+
+<gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <rosDebugLevel> Debug </rosDebugLevel>
+            <publishWheelTF>true</publishWheelTF>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50</updateRate>
+            <leftJoint>LeftWheel_joint</leftJoint>
+            <rightJoint>RightWheel_joint</rightJoint>
+            <wheelSeparation>0.1953</wheelSeparation>
+            <wheelDiameter>0.11</wheelDiameter>
+            <wheelTorque>30</wheelTorque>
+            <wheelAcceleration>2.8</wheelAcceleration>
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometryTopic>odom</odometryTopic>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <legacyMode>false</legacyMode>
+            <odometrySource>world</odometrySource>
+        </plugin>
+    </gazebo>
+
+<!------------ IMU sensor --------------->
+
+	<gazebo>
+            <plugin name="imu_controller" filename="libgazebo_ros_imu.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>20.0</updateRate>
+                <bodyName>base_footprint</bodyName>
+                <topicName>imu_data</topicName>
+                <gaussianNoise>0</gaussianNoise>  <!--2.89e-08-->
+                <xyzOffsets>0 0 0</xyzOffsets>
+                <rpyOffsets>0 0 0</rpyOffsets>
+            </plugin>
+        </gazebo>
+
+<!------------ Ultrasonics Plugin --------------->
+
+   <gazebo reference="laser_scanner">
+      <sensor type="ray" name="head_hokuyo_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>20</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>7</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.1</min_angle>
+              <max_angle>3.18</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>3</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+          <topicName>scan</topicName>
+          <frameName>laser_scanner</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+</robot>
+
+
+
+
+
