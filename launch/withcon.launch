@@ -1,0 +1,22 @@
+<launch>
+        <arg name="rviz_gui" default="False" />
+        <arg name="paused" default="false"/>
+        <arg name="use_sim_time" default="true"/>
+        <arg name="gazebo_gui" default="true"/>
+        <arg name="headless" default="false"/>
+        <arg name="debug" default="false"/>
+
+        <param name="robot_description" textfile="$(find Hexabot)/robots/Hexabot.URDF"/>
+        <param name="use_gui" value="$(arg rviz_gui)" />
+
+        <rosparam file="$(find Hexabot_control)/config/con.yaml" command="load"/>
+        <include file="$(find gazebo_ros)/launch/willowgarage_world.launch" />
+
+        <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model Hexabot" output="screen" />
+        <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" output="screen" ns="/Hexabot" args="LeftWheel_joint_controller RightWheel_joint_controller joint_state_controller"/>
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+                <remap from="/joint_states" to="/Hexabot/joint_states" />
+        </node>
+        <node name="rviz" pkg="rviz" type="rviz"/>
+
+</launch>
